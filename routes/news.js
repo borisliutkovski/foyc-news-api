@@ -1,3 +1,44 @@
+const express = require('express')
+const router = express.Router()
+const bodyParser = require('body-parser')
+
+const newsRouter = router
+  .use(bodyParser.json())
+  .get('/', (req, res) => {
+    res.send(getNews())
+  })
+  .get('/:id', (req, res, next) => {
+    try {
+      res.send(getNews(req.params.id))
+    } catch (err) {
+      next(err)
+    }
+  })
+  .post('/', (req, res, next) => {
+    try {
+      const id = addNews(req.body)
+      res.send(id)
+    } catch (err) {
+      next(err)
+    }
+  })
+  .put('/:id', (req, res, next) => {
+    try {
+      updateNews(req.body)
+      res.sendStatus(200)
+    } catch (err) {
+      next(err)
+    }
+  })
+  .delete('/:id', (req, res, next) => {
+    try {
+      deleteNews(req.params.id)
+      res.sendStatus(200)
+    } catch (err) {
+      next(err)
+    }
+  })
+
 let newsStorage = [
   {
     id: '23e23aet',
@@ -62,9 +103,4 @@ function createId() {
   return text
 }
 
-module.exports = {
-  getNews,
-  addNews,
-  updateNews,
-  deleteNews,
-}
+module.exports = newsRouter
