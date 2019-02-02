@@ -27,6 +27,14 @@ next get call
 ]
 ```
 
+# put
+
+`curl --header "Content-Type: application/json" --request PUT --data "{\"_id\": \"5c55b95c537f4e16c427a642\", \"title\": \"put works\"}" http://localhost:3000/news`
+
+# delete
+
+`curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/news/5c55b8a5740c0335d4674ee7`
+
 # error
 
 `curl http://localhost:3000/news/er4tert`

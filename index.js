@@ -2,6 +2,13 @@ const express = require('express')
 const app = express()
 const newsRouter = require('./routes/news')
 const { info, error } = require('./log')
+const { dbConnectionString } = require('./settings')
+const mongoose = require('mongoose')
+
+mongoose.connect(dbConnectionString)
+const db = mongoose.connection
+
+db.on('error', err => error('Mongo error: ', err))
 
 const port = 3000
 
@@ -17,7 +24,7 @@ app
     if (err.message === '404') {
       res.status(404).render('error', { title: 'Not found', message: 'Not found' })
     } else {
-      res.send(500, err.message)
+      res.status(500).send(err.message)
     }
 
     next()

@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "express": "^4.16.4",
+    "mongoose": "^5.4.9",
+    "mongoose-bcrypt": "^1.6.0",
     "pug": "^2.0.3"
   },
   "repository": {
