@@ -19,16 +19,23 @@ const authRouter = router
       req.login(user, { session: false }, err => {
         if (err) return res.send(err)
 
-        const token = jwt.sign(user, jwtSecret)
-        return res.json({ user, token })
+        const payload = {
+          username: user.username,
+          _id: user._id,
+        }
+
+        const token = jwt.sign(payload, jwtSecret)
+        return res.json({ payload, token })
       })
-    })
+    })(req, res, next)
   })
-  .post('/signUp', passport.authenticate('signup', { session: false }), (req, res, next) => {
+  .post('/signup', passport.authenticate('signup', { session: false }), (req, res, next) => {
     res.json({
       message: 'success',
       user: req.user,
     })
   })
+  .get('/facebook', passport.authenticate('facebook'))
+  .get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/auth/login', successRedirect: '/' }))
 
 module.exports = authRouter

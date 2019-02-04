@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const newsRouter = require('./routes/news')
+const authRouter = require('./routes/auth')
 const { info, error } = require('./log')
 const { dbConnectionString } = require('./settings')
 const mongoose = require('mongoose')
@@ -20,6 +21,7 @@ app
     next()
   })
   .use('/news', newsRouter)
+  .use('/auth', authRouter)
   .use((err, req, res, next) => {
     error(err.stack)
     if (err.message === '404') {

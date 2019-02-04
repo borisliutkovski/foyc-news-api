@@ -10,17 +10,17 @@ const passport = require('passport')
 
 const newsRouter = router
   .use(bodyParser.json())
-  .get('/', async (req, res) => {
+  .get('/', async(req, res) => {
     res.send(await getNews())
   })
-  .get('/:id', async (req, res, next) => {
+  .get('/:id', async(req, res, next) => {
     try {
       res.send(await getNews(req.params.id))
     } catch (err) {
       next(err)
     }
   })
-  .post('/', async (req, res, next) => {
+  .post('/', passport.authenticate('jwt', { session: false }), async(req, res, next) => {
     try {
       const id = await addNews(req.body)
       res.send(id)
@@ -28,7 +28,7 @@ const newsRouter = router
       next(err)
     }
   })
-  .put('/', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
+  .put('/', passport.authenticate('jwt', { session: false }), async(req, res, next) => {
     try {
       await updateNews(req.body)
       res.sendStatus(200)
@@ -36,7 +36,7 @@ const newsRouter = router
       next(err)
     }
   })
-  .delete('/:id', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
+  .delete('/:id', passport.authenticate('jwt', { session: false }), async(req, res, next) => {
     try {
       await deleteNews(req.params.id)
       res.sendStatus(200)
