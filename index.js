@@ -4,6 +4,7 @@ const newsRouter = require('./routes/news')
 const { info, error } = require('./log')
 const { dbConnectionString } = require('./settings')
 const mongoose = require('mongoose')
+require('./passport')
 
 mongoose.connect(dbConnectionString)
 const db = mongoose.connection
