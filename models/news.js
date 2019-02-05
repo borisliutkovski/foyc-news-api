@@ -7,6 +7,10 @@ const NewsSchema = new mongoose.Schema({
     index: true,
     required: true,
   },
+  userId: {
+    type: Number,
+    index: true,
+  }
 }, {
   versionKey: false,
 })

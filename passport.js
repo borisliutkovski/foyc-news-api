@@ -50,19 +50,3 @@ passport
       cb(err)
     }
   }))
-  .use('facebook', new FacebookStrategy({
-    clientID: 'N/A',
-    clientSecret: 'N/A',
-    callbackURL: `${hostURL}/auth/facebook/callback`,
-  }, async(accessToken, refreshToken, profile, cb) => {
-    try {
-      let user = await UserModel.find({ facebookId: profile.id })
-      if (!user) {
-        user = await UserModel.create({ facebookId: profile.id })
-      }
-
-      return cb(null, user)
-    } catch (err) {
-      cb(err)
-    }
-  }))
