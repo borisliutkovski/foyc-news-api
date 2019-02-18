@@ -14,7 +14,7 @@ const NewsSchema = new mongoose.Schema({
   publishedAt: Date,
   content: String,
   userId: {
-    type: Number,
+    type: String,
     index: true,
   },
 }, {
