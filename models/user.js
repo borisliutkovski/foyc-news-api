@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema({
     required: false,
     index: true,
     maxlength: 200,
-    unique: true,
     trim: true,
   },
   password: {
@@ -18,7 +17,6 @@ const UserSchema = new mongoose.Schema({
   facebookId: {
     type: Number,
     required: false,
-    unique: true,
   },
 }, { versionKey: false })
 

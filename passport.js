@@ -30,6 +30,9 @@ passport
     passwordField: 'password',
   }, async(username, password, cbc) => {
     try {
+      const existingUser = await UserModel.findOne({ username }).exec()
+      if (existingUser) return cbc(null, false, { message: 'user already exists' })
+
       const user = await UserModel.create({ username, password })
       return cbc(null, user)
     } catch (err) {

@@ -22,7 +22,7 @@ const newsRouter = router
   })
   .post('/', passport.authenticate('jwt', { session: false }), async(req, res, next) => {
     try {
-      const id = await addNews(req.body)
+      const id = await addNews(req.body, req.user)
       res.send(id)
     } catch (err) {
       next(err)
@@ -53,12 +53,13 @@ function getNews(id) {
   }
 }
 
-async function addNews(news) {
+async function addNews(news, user) {
   if (typeof news !== 'object') {
     throw new Error('news must be an object')
   }
 
   const { _id, ...newNews } = news
+  newNews.userId = user._id
 
   const dbNews = await News.create(newNews)
 

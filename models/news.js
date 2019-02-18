@@ -13,6 +13,10 @@ const NewsSchema = new mongoose.Schema({
   urlToImage: String,
   publishedAt: Date,
   content: String,
+  userId: {
+    type: Number,
+    index: true,
+  },
 }, {
   versionKey: false,
 })
