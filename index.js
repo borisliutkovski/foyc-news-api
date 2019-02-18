@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const newsRouter = require('./routes/news')
 const authRouter = require('./routes/auth')
-const { info, error } = require('./log')
+const { info, error, warn } = require('./log')
 const { dbConnectionString } = require('./settings')
 const mongoose = require('mongoose')
 require('./passport')
@@ -10,7 +11,7 @@ require('./passport')
 mongoose.connect(dbConnectionString)
 const db = mongoose.connection
 
-db.on('error', err => error('Mongo error: ', err))
+db.on('error', err => warn('Mongo error: ', err))
 
 const port = 3000
 
@@ -20,6 +21,7 @@ app
     info(`${new Date().toTimeString()} ${req.url}`)
     next()
   })
+  .use(cors())
   .use('/news', newsRouter)
   .use('/auth', authRouter)
   .use((err, req, res, next) => {

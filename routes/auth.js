@@ -35,6 +35,9 @@ const authRouter = router
       user: req.user,
     })
   })
+  .post('/logout', (req) => {
+    req.logout()
+  })
   .get('/facebook', passport.authenticate('facebook'))
   .get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/auth/login', successRedirect: '/' }))
 

@@ -41,7 +41,7 @@ passport
     secretOrKey: jwtSecret,
   }, async(jwtPayload, cb) => {
     try {
-      const user = await UserModel.findById(jwtPayload.id)
+      const user = await UserModel.findById(jwtPayload._id)
       return cb(null, user)
     } catch (err) {
       cb(err)
