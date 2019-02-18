@@ -13,7 +13,7 @@ const db = mongoose.connection
 
 db.on('error', err => warn('Mongo error: ', err))
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 app.set('view engine', 'pug')
 app
