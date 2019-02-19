@@ -4,11 +4,10 @@ const cors = require('cors')
 const newsRouter = require('./routes/news')
 const authRouter = require('./routes/auth')
 const { info, error, warn } = require('./log')
-const { dbConnectionString } = require('./settings')
 const mongoose = require('mongoose')
 require('./passport')
+require('./db')
 
-mongoose.connect(dbConnectionString)
 const db = mongoose.connection
 
 db.on('error', err => warn('Mongo error: ', err))
@@ -36,3 +35,5 @@ app
   })
 
 app.listen(port, () => info(`started on ${port}`))
+
+module.exports = app

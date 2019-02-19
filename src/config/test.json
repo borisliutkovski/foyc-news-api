@@ -1,0 +1,4 @@
+{
+  "dbConnectionString": "mongodb://localhost:27020/foyc-test",
+  "jwtSecret": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2p"
+}
