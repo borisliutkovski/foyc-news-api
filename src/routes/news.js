@@ -13,6 +13,9 @@ const newsRouter = router
   .get('/', async(req, res) => {
     res.send(await getNews())
   })
+  .get('/rxjs', (req, res) => {
+    res.send([])
+  })
   .get('/:id', async(req, res, next) => {
     try {
       res.send(await getNews(req.params.id))
