@@ -1,8 +1,6 @@
-process.env.NODE_ENV = 'test'
-
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const server = require('../src/index')
+const server = require('../src/index/test')
 const News = require('../src/models/news')
 chai.should()
 

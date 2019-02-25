@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-const { jwtSecret } = require('../config')
+const { jwtSecret } = require('../config/index')
 const bodyParser = require('body-parser')
 
 const authRouter = router

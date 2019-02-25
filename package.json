@@ -4,8 +4,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "debug": "nodemon --inspect src/index.js",
+    "start": "node src/index/prod.js",
+    "debug": "nodemon --inspect src/index/dev.js",
     "test": "mocha --timeout 10000 --exit",
     "coverage": "nyc mocha --timeout 10000 --exit"
   },
