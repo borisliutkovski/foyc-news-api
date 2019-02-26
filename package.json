@@ -7,6 +7,7 @@
     "start": "node src/index/prod.js",
     "debug": "nodemon --inspect src/index/dev.js",
     "test": "mocha --timeout 10000 --exit",
+    "test-init": "mocha --timeout 1000000 --exit",
     "coverage": "nyc mocha --timeout 10000 --exit"
   },
   "devDependencies": {

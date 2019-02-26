@@ -1,2 +1,2 @@
 process.env.NODE_ENV = 'test'
-require('../index')
+module.exports = require('../index')
