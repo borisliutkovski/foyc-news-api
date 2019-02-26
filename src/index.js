@@ -25,12 +25,13 @@ app
   .use('/auth', authRouter)
   .use((err, req, res, next) => {
     error(err.stack)
-    if (err.message === '404') {
-      res.status(404).render('error', { title: 'Not found', message: 'Not found' })
-    } else {
-      res.status(500).send(err.message)
+    const errNum = +err.message
+    if (!isNaN(errNUm)) {
+      res.status(errNum).send()
+      return
     }
 
+    res.status(500).send(err.message)
     next()
   })
 

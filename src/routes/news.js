@@ -58,7 +58,7 @@ function getNews(id) {
 
 async function addNews(news, user) {
   if (typeof news !== 'object') {
-    throw new Error('news must be an object')
+    throw new Error('415')
   }
 
   const { _id, ...newNews } = news
